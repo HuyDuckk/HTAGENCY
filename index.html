@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HT Ads Agency — Chuyên Cung Cấp Giải Pháp Marketing Online</title>
+  <meta name="description" content="HT Media - Chuyên cung cấp giải pháp Marketing Online: Facebook Ads, Google Ads, TikTok Ads, SEO. Cam kết KPI rõ ràng, báo cáo minh bạch." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Be Vietnam Pro', 'sans-serif'] },
+          colors: {
+            primary: '#2563EB',
+            cyan: { ht: '#06B6D4' },
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="font-sans text-gray-900 overflow-x-hidden" x-data="htApp()">
+
+  <!-- ===== HEADER ===== -->
+  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+    :class="scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm' : 'bg-transparent'">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-18 py-4">
+
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-3 shrink-0">
+          <svg width="48" height="40" viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="logoGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#2563EB"/>
+                <stop offset="100%" style="stop-color:#06B6D4"/>
+              </linearGradient>
+            </defs>
+            <!-- H left leg -->
+            <path d="M8 15 L8 85 L28 85 L28 60 L52 60 L52 85 L72 85 L72 15 L52 15 L52 42 L28 42 L28 15 Z" fill="url(#logoGrad)"/>
+            <!-- T stem -->
+            <path d="M76 15 L76 85 L96 85 L96 30 L116 30 L116 15 Z" fill="url(#logoGrad)"/>
+            <!-- Cyan wing -->
+            <path d="M76 15 L116 15 L116 30 L96 30 L96 15 Z" fill="url(#logoGrad)" opacity="0.85"/>
+            <!-- Wing swoosh -->
+            <path d="M90 8 Q106 2 118 10 L116 15 L96 15 Z" fill="#06B6D4" opacity="0.9"/>
+          </svg>
+          <div class="leading-tight">
+            <span class="text-xl font-black tracking-tight" :class="scrolled ? 'text-gray-900' : 'text-white'">HT</span>
+            <span class="text-xl font-black tracking-tight" :class="scrolled ? 'text-gray-900' : 'text-white'"> Ads</span>
+            <span class="block text-xs font-semibold tracking-widest uppercase" style="color:#06B6D4">Agency</span>
+          </div>
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden lg:flex items-center gap-8">
+          <a href="#dich-vu" class="text-sm font-semibold transition-colors hover:text-blue-600" :class="scrolled ? 'text-gray-700' : 'text-white/90'">Dịch vụ</a>
+          <a href="#ve-chung-toi" class="text-sm font-semibold transition-colors hover:text-blue-600" :class="scrolled ? 'text-gray-700' : 'text-white/90'">Về chúng tôi</a>
+          <a href="#case-study" class="text-sm font-semibold transition-colors hover:text-blue-600" :class="scrolled ? 'text-gray-700' : 'text-white/90'">Case Study</a>
+          <a href="#blog" class="text-sm font-semibold transition-colors hover:text-blue-600" :class="scrolled ? 'text-gray-700' : 'text-white/90'">Blog</a>
+          <a href="#lien-he" class="text-sm font-semibold transition-colors hover:text-blue-600" :class="scrolled ? 'text-gray-700' : 'text-white/90'">Liên hệ</a>
+        </nav>
+
+        <!-- CTA + Mobile toggle -->
+        <div class="flex items-center gap-3">
+          <a href="#lien-he" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold text-white btn-gradient shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all">
+            Tư vấn miễn phí
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+          <button @click="mobileOpen = !mobileOpen" class="lg:hidden p-2 rounded-lg" :class="scrolled ? 'text-gray-700' : 'text-white'">
+            <svg x-show="!mobileOpen" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            <svg x-show="mobileOpen" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div x-show="mobileOpen" x-transition class="lg:hidden bg-white border-t border-gray-100 shadow-xl">
+      <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-4">
+        <a href="#dich-vu" @click="mobileOpen=false" class="text-gray-700 font-semibold py-2 border-b border-gray-50">Dịch vụ</a>
+        <a href="#ve-chung-toi" @click="mobileOpen=false" class="text-gray-700 font-semibold py-2 border-b border-gray-50">Về chúng tôi</a>
+        <a href="#case-study" @click="mobileOpen=false" class="text-gray-700 font-semibold py-2 border-b border-gray-50">Case Study</a>
+        <a href="#blog" @click="mobileOpen=false" class="text-gray-700 font-semibold py-2 border-b border-gray-50">Blog</a>
+        <a href="#lien-he" @click="mobileOpen=false" class="text-gray-700 font-semibold py-2">Liên hệ</a>
+        <a href="#lien-he" class="btn-gradient text-white text-center py-3 rounded-full font-bold">Tư vấn miễn phí</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero-bg relative min-h-screen flex items-center pt-20">
+    <!-- Animated blobs -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <!-- Grid overlay -->
+    <div class="absolute inset-0 hero-grid opacity-20"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <!-- Left content -->
+        <div class="text-white">
+          <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-6">
+            <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+            <span class="text-sm font-medium">Top Digital Marketing Agency Việt Nam</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.1] mb-6">
+            Quảng cáo số<br/>
+            <span class="text-gradient-hero">tăng trưởng thực sự</span>
+          </h1>
+
+          <p class="text-lg text-white/80 mb-8 leading-relaxed max-w-lg">
+            Giải pháp Digital Marketing toàn diện — Facebook Ads, Google Ads, TikTok Ads, SEO & Content. Cam kết <strong class="text-white">KPI rõ ràng</strong> trước khi bắt đầu.
+          </p>
+
+          <div class="flex flex-wrap gap-4 mb-10">
+            <a href="#lien-he" class="inline-flex items-center gap-2 bg-white text-blue-600 px-7 py-3.5 rounded-full font-bold text-base shadow-xl hover:shadow-2xl hover:-translate-y-0.5 transition-all">
+              Bắt đầu ngay
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+            <a href="#case-study" class="inline-flex items-center gap-2 border-2 border-white/50 text-white px-7 py-3.5 rounded-full font-bold text-base hover:bg-white/10 transition-all">
+              Xem case study
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </a>
+          </div>
+
+          <!-- Trust logos -->
+          <div class="flex items-center gap-6 flex-wrap">
+            <span class="text-white/50 text-sm">Đối tác chứng nhận:</span>
+            <div class="flex items-center gap-4">
+              <div class="bg-white/10 rounded-lg px-3 py-1.5 text-xs font-bold text-white/80">Meta Partner</div>
+              <div class="bg-white/10 rounded-lg px-3 py-1.5 text-xs font-bold text-white/80">Google Partner</div>
+              <div class="bg-white/10 rounded-lg px-3 py-1.5 text-xs font-bold text-white/80">TikTok Partner</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Hero card -->
+        <div class="hidden lg:block">
+          <div class="relative">
+            <!-- Dashboard mockup -->
+            <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 shadow-2xl">
+              <div class="flex items-center gap-3 mb-5">
+                <div class="flex gap-1.5"><div class="w-3 h-3 rounded-full bg-red-400"></div><div class="w-3 h-3 rounded-full bg-yellow-400"></div><div class="w-3 h-3 rounded-full bg-green-400"></div></div>
+                <span class="text-white/60 text-sm">Campaign Dashboard</span>
+              </div>
+
+              <!-- Metric cards -->
+              <div class="grid grid-cols-2 gap-3 mb-4">
+                <div class="bg-white/15 rounded-xl p-4">
+                  <div class="text-white/60 text-xs mb-1">ROAS</div>
+                  <div class="text-white text-2xl font-black">8.5x</div>
+                  <div class="text-green-400 text-xs font-semibold">↑ +32% so với tháng trước</div>
+                </div>
+                <div class="bg-white/15 rounded-xl p-4">
+                  <div class="text-white/60 text-xs mb-1">CPL</div>
+                  <div class="text-white text-2xl font-black">45K</div>
+                  <div class="text-green-400 text-xs font-semibold">↓ Giảm 40% chi phí</div>
+                </div>
+                <div class="bg-white/15 rounded-xl p-4">
+                  <div class="text-white/60 text-xs mb-1">Leads tháng này</div>
+                  <div class="text-white text-2xl font-black">1,284</div>
+                  <div class="text-green-400 text-xs font-semibold">↑ +18% so với KPI</div>
+                </div>
+                <div class="bg-white/15 rounded-xl p-4">
+                  <div class="text-white/60 text-xs mb-1">CTR</div>
+                  <div class="text-white text-2xl font-black">4.7%</div>
+                  <div class="text-green-400 text-xs font-semibold">↑ Top 10% ngành</div>
+                </div>
+              </div>
+
+              <!-- Chart bar mock -->
+              <div class="bg-white/10 rounded-xl p-4">
+                <div class="text-white/60 text-xs mb-3">Revenue Growth</div>
+                <div class="flex items-end gap-2 h-16">
+                  <div class="flex-1 bg-blue-400/60 rounded-t" style="height:40%"></div>
+                  <div class="flex-1 bg-blue-400/60 rounded-t" style="height:55%"></div>
+                  <div class="flex-1 bg-blue-400/60 rounded-t" style="height:45%"></div>
+                  <div class="flex-1 bg-blue-400/60 rounded-t" style="height:70%"></div>
+                  <div class="flex-1 bg-blue-400/60 rounded-t" style="height:60%"></div>
+                  <div class="flex-1 bg-white rounded-t" style="height:100%"></div>
+                  <div class="flex-1 bg-cyan-400/80 rounded-t animate-pulse" style="height:85%"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating badges -->
+            <div class="absolute -top-4 -right-4 bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-2">
+              <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
+                <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              </div>
+              <div>
+                <div class="text-xs font-bold text-gray-900">Chiến dịch mới</div>
+                <div class="text-xs text-gray-500">Vừa khởi chạy</div>
+              </div>
+            </div>
+
+            <div class="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-xl px-4 py-3">
+              <div class="text-xs text-gray-500 mb-1">ROI tháng này</div>
+              <div class="text-xl font-black text-blue-600">+285%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom wave -->
+    <div class="absolute bottom-0 left-0 right-0">
+      <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 40 Q360 80 720 40 Q1080 0 1440 40 L1440 80 L0 80 Z" fill="white"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ===== PROMO BANNER ===== -->
+  <div class="bg-gradient-to-r from-blue-600 to-cyan-500 py-3 px-4">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-3 text-center">
+      <div class="flex items-center gap-2 text-white">
+        <span class="text-yellow-300 font-black text-lg">🔥</span>
+        <span class="font-bold text-sm sm:text-base">Ưu đãi đặc biệt 2026:</span>
+        <span class="text-white/90 text-sm sm:text-base">7 ngày thử nghiệm Ads miễn phí cho chủ Shop & doanh nghiệp vừa và nhỏ!</span>
+      </div>
+      <a href="https://www.facebook.com/htmedia.vn" target="_blank" class="shrink-0 bg-white text-blue-600 text-xs font-black px-4 py-1.5 rounded-full hover:bg-yellow-300 hover:text-blue-700 transition-all">
+        Đăng ký ngay →
+      </a>
+    </div>
+  </div>
+
+  <!-- ===== STATS BAR ===== -->
+  <section id="stats" class="py-16 bg-white" x-data="counterApp()">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="rounded-2xl p-8 lg:p-12" style="background: linear-gradient(135deg, #EFF6FF 0%, #ECFEFF 100%); border: 1px solid #BFDBFE;">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0 lg:divide-x lg:divide-blue-200">
+          <div class="text-center lg:px-8">
+            <div class="text-4xl lg:text-5xl font-black mb-1 text-gradient">
+              <span x-text="stats[0].display"></span><span>+</span>
+            </div>
+            <div class="text-gray-700 font-semibold text-sm">Khách hàng tin tưởng</div>
+            <div class="text-gray-400 text-xs mt-1">Đang hợp tác</div>
+          </div>
+          <div class="text-center lg:px-8">
+            <div class="text-4xl lg:text-5xl font-black mb-1 text-gradient">
+              <span x-text="stats[1].display"></span><span>+</span>
+            </div>
+            <div class="text-gray-700 font-semibold text-sm">Chiến dịch thành công</div>
+            <div class="text-gray-400 text-xs mt-1">Trên tất cả các kênh</div>
+          </div>
+          <div class="text-center lg:px-8">
+            <div class="text-4xl lg:text-5xl font-black mb-1 text-gradient">
+              <span x-text="stats[2].display"></span><span>%</span>
+            </div>
+            <div class="text-gray-700 font-semibold text-sm">ROI trung bình</div>
+            <div class="text-gray-400 text-xs mt-1">Của khách hàng</div>
+          </div>
+          <div class="text-center lg:px-8">
+            <div class="text-4xl lg:text-5xl font-black mb-1 text-gradient">
+              <span x-text="stats[3].display"></span><span>+</span>
+            </div>
+            <div class="text-gray-700 font-semibold text-sm">Năm kinh nghiệm</div>
+            <div class="text-gray-400 text-xs mt-1">Thực chiến thị trường</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section id="dich-vu" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <div class="inline-flex items-center gap-2 bg-blue-50 text-blue-600 rounded-full px-4 py-2 text-sm font-semibold mb-4">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/></svg>
+          Dịch vụ của chúng tôi
+        </div>
+        <h2 class="text-3xl lg:text-4xl font-black text-gray-900 mb-4">Giải pháp <span class="text-gradient">toàn diện</span> cho doanh nghiệp</h2>
+        <p class="text-gray-500 max-w-2xl mx-auto">Từ quảng cáo, thiết kế đến lập trình website — HT Ads Agency là đối tác kỹ thuật số duy nhất bạn cần.</p>
+      </div>
+
+      <!-- ── Nhóm 1: Quảng cáo số ── -->
+      <div class="mb-4">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="h-px flex-1 bg-gradient-to-r from-transparent to-blue-200"></div>
+          <span class="text-xs font-bold text-blue-500 uppercase tracking-widest bg-blue-50 px-4 py-1.5 rounded-full">Quảng cáo số</span>
+          <div class="h-px flex-1 bg-gradient-to-l from-transparent to-blue-200"></div>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+          <!-- Facebook Ads -->
+          <div class="service-card bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all group">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: linear-gradient(135deg, #1877F2, #42A5F5)">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </div>
+            <h3 class="font-bold text-gray-900 mb-2">Facebook & Instagram Ads</h3>
+            <p class="text-gray-500 text-sm leading-relaxed mb-3">Tiếp cận đúng đối tượng mục tiêu, tối ưu CPL qua A/B testing liên tục.</p>
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="tag-pill">Retargeting</span>
+              <span class="tag-pill">Lookalike</span>
+              <span class="tag-pill">Video Ads</span>
+            </div>
+            <a href="#lien-he" class="text-blue-600 font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Tìm hiểu <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+          </div>
+
+          <!-- Google Ads -->
+          <div class="service-card bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all group">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: linear-gradient(135deg, #EA4335, #FBBC05)">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/></svg>
+            </div>
+            <h3 class="font-bold text-gray-900 mb-2">Google Ads</h3>
+            <p class="text-gray-500 text-sm leading-relaxed mb-3">Xuất hiện top tìm kiếm khi khách hàng đang cần sản phẩm/dịch vụ của bạn.</p>
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="tag-pill">Search</span>
+              <span class="tag-pill">Display</span>
+              <span class="tag-pill">Shopping</span>
+            </div>
+            <a href="#lien-he" class="text-blue-600 font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Tìm hiểu <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+          </div>
+
+          <!-- TikTok Ads -->
+          <div class="service-card bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all group">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: linear-gradient(135deg, #010101, #EE1D52)">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.17 8.17 0 004.78 1.52V6.77a4.85 4.85 0 01-1.01-.08z"/></svg>
+            </div>
+            <h3 class="font-bold text-gray-900 mb-2">TikTok Ads</h3>
+            <p class="text-gray-500 text-sm leading-relaxed mb-3">Content viral chạm Gen Z & Millennial. In-Feed, TopView, Branded Hashtag Challenge.</p>
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="tag-pill">In-Feed</span>
+              <span class="tag-pill">TopView</span>
+              <span class="tag-pill">Spark Ads</span>
+            </div>
+            <a href="#lien-he" class="text-blue-600 font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Tìm hiểu <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+          </div>
+
+          <!-- SEO -->
+          <div class="service-card bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all group">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: linear-gradient(135deg, #10B981, #06B6D4)">
+              <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            </div>
+            <h3 class="font-bold text-gray-900 mb-2">SEO & Content</h3>
+            <p class="text-gray-500 text-sm leading-relaxed mb-3">Lên top Google bền vững với content chuẩn SEO, xây dựng authority cho website.</p>
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="tag-pill">On-page SEO</span>
+              <span class="tag-pill">Backlink</span>
+              <span class="tag-pill">Content</span>
+            </div>
+            <a href="#lien-he" class="text-blue-600 font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Tìm hiểu <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Nhóm 2: Thiết kế & Kỹ thuật số ── -->
+      <div class="mb-4">
+        <div class="flex items-center gap-3 mb-6 mt-10">
+          <div class="h-px flex-1 bg-gradient-to-r from-transparent to-purple-200"></div>
+          <span class="text-xs font-bold text-purple-500 uppercase tracking-widest bg-purple-50 px-4 py-1.5 rounded-full">Thiết kế & Kỹ thuật số</span>
+          <div class="h-px flex-1 bg-gradient-to-l from-transparent to-purple-200"></div>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+          <!-- Thiết kế & Lập trình Website -->
+          <div class="service-card bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all group">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: linear-gradient(135deg, #2563EB, #06B6D4)">
+              <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+            </div>
+            <div class="flex items-center gap-2 mb-2">
+              <h3 class="font-bold text-gray-900">Thiết kế & Lập trình Website</h3>
+              <span class="text-xs bg-blue-50 text-blue-600 px-2 py-0.5 rounded-full font-semibold">Hot</span>
+            </div>
+            <p class="text-gray-500 text-sm leading-relaxed mb-3">Website chuẩn SEO, tốc độ cao, giao diện đẹp. Landing page chuyển đổi, website doanh nghiệp, shop bán hàng.</p>
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="tag-pill">Landing Page</span>
+              <span class="tag-pill">Website DN</span>
+              <span class="tag-pill">Bán hàng</span>
+              <span class="tag-pill">WordPress</span>
+            </div>
+            <a href="#lien-he" class="text-blue-600 font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Tìm hiểu <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+          </div>
+
+          <!-- Thiết kế đồ họa -->
+          <div class="service-card bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all group">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: linear-gradient(135deg, #8B5CF6, #EC4899)">
+              <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            </div>
+            <div class="flex items-center gap-2 mb-2">
+              <h3 class="font-bold text-gray-900">Thiết kế đồ họa</h3>
+              <span class="text-xs bg-purple-50 text-purple-600 px-2 py-0.5 rounded-full font-semibold">New</span>
+            </div>
+            <p class="text-gray-500 text-sm leading-relaxed mb-3">Logo, nhận diện thương hiệu, ấn phẩm truyền thông, banner quảng cáo. Đẹp, chuyên nghiệp, đúng brand.</p>
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="tag-pill">Logo & Brand</span>
+              <span class="tag-pill">Banner Ads</span>
+              <span class="tag-pill">Ấn phẩm</span>
+              <span class="tag-pill">Infographic</span>
+            </div>
+            <a href="#lien-he" class="text-blue-600 font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Tìm hiểu <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+          </div>
+
+          <!-- Sản xuất Video -->
+          <div class="service-card bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all group">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: linear-gradient(135deg, #EF4444, #F97316)">
+              <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.069A1 1 0 0121 8.87v6.26a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+            </div>
+            <h3 class="font-bold text-gray-900 mb-2">Sản xuất Video & Motion</h3>
+            <p class="text-gray-500 text-sm leading-relaxed mb-3">Video quảng cáo chuyên nghiệp, motion graphic, reels TikTok/Instagram, video giới thiệu sản phẩm.</p>
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="tag-pill">Video Ads</span>
+              <span class="tag-pill">Reels</span>
+              <span class="tag-pill">Motion</span>
+              <span class="tag-pill">Quay dựng</span>
+            </div>
+            <a href="#lien-he" class="text-blue-600 font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Tìm hiểu <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Nhóm 3: Vận hành & Chiến lược ── -->
+      <div>
+        <div class="flex items-center gap-3 mb-6 mt-10">
+          <div class="h-px flex-1 bg-gradient-to-r from-transparent to-cyan-200"></div>
+          <span class="text-xs font-bold text-cyan-600 uppercase tracking-widest bg-cyan-50 px-4 py-1.5 rounded-full">Vận hành & Chiến lược</span>
+          <div class="h-px flex-1 bg-gradient-to-l from-transparent to-cyan-200"></div>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+          <!-- Quản lý Fanpage / Social -->
+          <div class="service-card bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all group">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: linear-gradient(135deg, #06B6D4, #3B82F6)">
+              <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"/></svg>
+            </div>
+            <h3 class="font-bold text-gray-900 mb-2">Quản lý Fanpage & Social</h3>
+            <p class="text-gray-500 text-sm leading-relaxed mb-3">Xây dựng & vận hành kênh Facebook, Instagram, TikTok. Nội dung hàng ngày, tương tác cộng đồng, phát triển followers.</p>
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="tag-pill">Đăng bài</span>
+              <span class="tag-pill">Inbox</span>
+              <span class="tag-pill">Followers</span>
+              <span class="tag-pill">Community</span>
+            </div>
+            <a href="#lien-he" class="text-blue-600 font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Tìm hiểu <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+          </div>
+
+          <!-- Email Marketing -->
+          <div class="service-card bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all group">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: linear-gradient(135deg, #F59E0B, #EF4444)">
+              <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            <h3 class="font-bold text-gray-900 mb-2">Email Marketing & Automation</h3>
+            <p class="text-gray-500 text-sm leading-relaxed mb-3">Chiến dịch email nuôi dưỡng khách hàng, automation funnel, re-engagement và upsell hiệu quả.</p>
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="tag-pill">Newsletter</span>
+              <span class="tag-pill">Automation</span>
+              <span class="tag-pill">Drip Campaign</span>
+            </div>
+            <a href="#lien-he" class="text-blue-600 font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Tìm hiểu <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+          </div>
+
+          <!-- Tư vấn chiến lược -->
+          <div class="service-card bg-gradient-to-br from-blue-600 to-cyan-500 rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all group">
+            <div class="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+            </div>
+            <h3 class="font-bold text-white mb-2">Tư vấn chiến lược tổng thể</h3>
+            <p class="text-white/80 text-sm leading-relaxed mb-3">Phân tích thị trường, đối thủ, xây dựng kế hoạch Marketing 360° theo mục tiêu kinh doanh thực tế.</p>
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="bg-white/20 text-white text-xs px-3 py-1 rounded-full font-medium">Market Research</span>
+              <span class="bg-white/20 text-white text-xs px-3 py-1 rounded-full font-medium">KPI Setting</span>
+              <span class="bg-white/20 text-white text-xs px-3 py-1 rounded-full font-medium">360° Plan</span>
+            </div>
+            <a href="#lien-he" class="text-white font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Tư vấn ngay <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA dưới services -->
+      <div class="mt-12 text-center">
+        <p class="text-gray-500 mb-4">Chưa biết dịch vụ nào phù hợp? Để chuyên gia tư vấn miễn phí cho bạn.</p>
+        <a href="#lien-he" class="inline-flex items-center gap-2 btn-gradient text-white px-8 py-3.5 rounded-full font-bold shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:-translate-y-0.5 transition-all">
+          Nhận tư vấn miễn phí ngay
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHY CHOOSE US ===== -->
+  <section id="ve-chung-toi" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <!-- Left -->
+        <div>
+          <div class="inline-flex items-center gap-2 bg-blue-50 text-blue-600 rounded-full px-4 py-2 text-sm font-semibold mb-4">
+            Tại sao chọn HT Ads?
+          </div>
+          <h2 class="text-3xl lg:text-4xl font-black text-gray-900 mb-6">Chúng tôi không chỉ<br/><span class="text-gradient">chạy quảng cáo</span></h2>
+          <p class="text-gray-500 mb-10 leading-relaxed">Chúng tôi là đối tác tăng trưởng thực sự. Mỗi đồng ngân sách của bạn được đầu tư có tính toán, mỗi chiến dịch đều có KPI rõ ràng và báo cáo minh bạch.</p>
+
+          <div class="space-y-6">
+            <div class="flex gap-4 items-start">
+              <div class="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 btn-gradient">
+                <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+              <div>
+                <h3 class="font-bold text-gray-900 mb-1">Cam kết KPI rõ ràng</h3>
+                <p class="text-gray-500 text-sm">Ký cam kết KPI trước khi bắt đầu. Không đạt KPI, hoàn tiền dịch vụ tháng đó.</p>
+              </div>
+            </div>
+
+            <div class="flex gap-4 items-start">
+              <div class="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 btn-gradient">
+                <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+              </div>
+              <div>
+                <h3 class="font-bold text-gray-900 mb-1">Đội ngũ chuyên gia 5+ năm</h3>
+                <p class="text-gray-500 text-sm">Mỗi account manager đều có chứng chỉ Meta, Google, TikTok và kinh nghiệm thực chiến.</p>
+              </div>
+            </div>
+
+            <div class="flex gap-4 items-start">
+              <div class="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 btn-gradient">
+                <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              </div>
+              <div>
+                <h3 class="font-bold text-gray-900 mb-1">Báo cáo real-time 24/7</h3>
+                <p class="text-gray-500 text-sm">Dashboard live, báo cáo hàng tuần chi tiết. Bạn luôn biết tiền của mình đang chạy ở đâu.</p>
+              </div>
+            </div>
+
+            <div class="flex gap-4 items-start">
+              <div class="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 btn-gradient">
+                <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+              <div>
+                <h3 class="font-bold text-gray-900 mb-1">Tối ưu ngân sách tối đa</h3>
+                <p class="text-gray-500 text-sm">Phân bổ ngân sách thông minh theo kênh, theo thời điểm để đạt CPA thấp nhất.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Achievements -->
+        <div class="grid grid-cols-2 gap-5">
+          <div class="bg-blue-600 rounded-2xl p-6 text-white">
+            <div class="text-4xl font-black mb-1">200+</div>
+            <div class="text-blue-200 text-sm font-medium">Khách hàng<br/>tin tưởng</div>
+            <div class="mt-4 flex -space-x-2">
+              <div class="w-7 h-7 rounded-full bg-blue-400 border-2 border-blue-600 flex items-center justify-center text-xs font-bold">A</div>
+              <div class="w-7 h-7 rounded-full bg-cyan-400 border-2 border-blue-600 flex items-center justify-center text-xs font-bold">B</div>
+              <div class="w-7 h-7 rounded-full bg-indigo-300 border-2 border-blue-600 flex items-center justify-center text-xs font-bold">C</div>
+              <div class="w-7 h-7 rounded-full bg-white/30 border-2 border-blue-600 flex items-center justify-center text-xs font-bold">+</div>
+            </div>
+          </div>
+          <div class="bg-gray-50 rounded-2xl p-6">
+            <div class="text-4xl font-black text-gray-900 mb-1">500+</div>
+            <div class="text-gray-500 text-sm font-medium">Chiến dịch<br/>thành công</div>
+            <div class="mt-4">
+              <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+                <div class="h-full rounded-full btn-gradient" style="width:92%"></div>
+              </div>
+              <div class="text-xs text-gray-400 mt-1">Tỷ lệ thành công 92%</div>
+            </div>
+          </div>
+          <div class="bg-gray-50 rounded-2xl p-6">
+            <div class="text-4xl font-black text-gray-900 mb-1">150%</div>
+            <div class="text-gray-500 text-sm font-medium">ROI trung bình<br/>của khách hàng</div>
+            <div class="mt-4 text-green-500 font-semibold text-sm flex items-center gap-1">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z"/></svg>
+              Tăng trưởng liên tục
+            </div>
+          </div>
+          <div class="bg-gradient-to-br from-cyan-400 to-blue-600 rounded-2xl p-6 text-white">
+            <div class="text-4xl font-black mb-1">5+</div>
+            <div class="text-white/80 text-sm font-medium">Năm kinh<br/>nghiệm thực chiến</div>
+            <div class="mt-4 flex gap-1">
+              <svg class="w-4 h-4 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW WE WORK ===== -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <div class="inline-flex items-center gap-2 bg-blue-50 text-blue-600 rounded-full px-4 py-2 text-sm font-semibold mb-4">Quy trình làm việc</div>
+        <h2 class="text-3xl lg:text-4xl font-black text-gray-900 mb-4">4 bước đến <span class="text-gradient">kết quả thực sự</span></h2>
+        <p class="text-gray-500 max-w-xl mx-auto">Quy trình làm việc bài bản, minh bạch từ A-Z giúp bạn yên tâm và nắm rõ mọi bước.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+        <!-- Connector line desktop -->
+        <div class="hidden lg:block absolute top-10 left-[12.5%] right-[12.5%] h-0.5 bg-gradient-to-r from-blue-600 to-cyan-500 z-0"></div>
+
+        <!-- Step 1 -->
+        <div class="bg-white rounded-2xl p-7 shadow-sm relative z-10 text-center">
+          <div class="w-16 h-16 rounded-full btn-gradient flex items-center justify-center mx-auto mb-5 shadow-lg shadow-blue-500/30">
+            <span class="text-white font-black text-xl">01</span>
+          </div>
+          <h3 class="font-bold text-gray-900 text-lg mb-3">Phân tích</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">Nghiên cứu thị trường, phân tích đối thủ, insight khách hàng mục tiêu để có nền tảng vững chắc.</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="bg-white rounded-2xl p-7 shadow-sm relative z-10 text-center">
+          <div class="w-16 h-16 rounded-full btn-gradient flex items-center justify-center mx-auto mb-5 shadow-lg shadow-blue-500/30">
+            <span class="text-white font-black text-xl">02</span>
+          </div>
+          <h3 class="font-bold text-gray-900 text-lg mb-3">Lên chiến lược</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">Xây dựng kế hoạch toàn diện, xác định KPI rõ ràng theo mục tiêu kinh doanh cụ thể của bạn.</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="bg-white rounded-2xl p-7 shadow-sm relative z-10 text-center">
+          <div class="w-16 h-16 rounded-full btn-gradient flex items-center justify-center mx-auto mb-5 shadow-lg shadow-blue-500/30">
+            <span class="text-white font-black text-xl">03</span>
+          </div>
+          <h3 class="font-bold text-gray-900 text-lg mb-3">Triển khai</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">Chạy chiến dịch, A/B testing liên tục, tối ưu hóa từng biến số để đạt hiệu quả cao nhất.</p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="bg-white rounded-2xl p-7 shadow-sm relative z-10 text-center">
+          <div class="w-16 h-16 rounded-full btn-gradient flex items-center justify-center mx-auto mb-5 shadow-lg shadow-blue-500/30">
+            <span class="text-white font-black text-xl">04</span>
+          </div>
+          <h3 class="font-bold text-gray-900 text-lg mb-3">Báo cáo</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">Dashboard real-time và báo cáo định kỳ minh bạch. Bạn luôn kiểm soát hoàn toàn ngân sách.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CASE STUDIES ===== -->
+  <section id="case-study" class="py-20 bg-white" x-data="{ activeFilter: 'all' }">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <div class="inline-flex items-center gap-2 bg-blue-50 text-blue-600 rounded-full px-4 py-2 text-sm font-semibold mb-4">Case Study</div>
+        <h2 class="text-3xl lg:text-4xl font-black text-gray-900 mb-4">Kết quả <span class="text-gradient">thực tế</span> từ khách hàng</h2>
+        <p class="text-gray-500 max-w-xl mx-auto">Không phải lời hứa — đây là số liệu thực tế từ các chiến dịch chúng tôi đã triển khai.</p>
+      </div>
+
+      <!-- Filter -->
+      <div class="flex flex-wrap justify-center gap-3 mb-10">
+        <button @click="activeFilter='all'" :class="activeFilter==='all' ? 'btn-gradient text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'" class="px-5 py-2 rounded-full text-sm font-semibold transition-all">Tất cả</button>
+        <button @click="activeFilter='facebook'" :class="activeFilter==='facebook' ? 'btn-gradient text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'" class="px-5 py-2 rounded-full text-sm font-semibold transition-all">Facebook Ads</button>
+        <button @click="activeFilter='google'" :class="activeFilter==='google' ? 'btn-gradient text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'" class="px-5 py-2 rounded-full text-sm font-semibold transition-all">Google Ads</button>
+        <button @click="activeFilter='tiktok'" :class="activeFilter==='tiktok' ? 'btn-gradient text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'" class="px-5 py-2 rounded-full text-sm font-semibold transition-all">TikTok Ads</button>
+        <button @click="activeFilter='seo'" :class="activeFilter==='seo' ? 'btn-gradient text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'" class="px-5 py-2 rounded-full text-sm font-semibold transition-all">SEO</button>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Case 1 -->
+        <div class="rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl transition-all group" x-show="activeFilter==='all' || activeFilter==='facebook'">
+          <div class="h-48 bg-gradient-to-br from-blue-600 to-blue-800 relative p-6 flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+              <span class="bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full">Facebook Ads</span>
+              <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center text-white font-black text-lg">E</div>
+            </div>
+            <div>
+              <div class="text-white/70 text-xs mb-1">Thương hiệu thời trang</div>
+              <div class="text-white font-bold text-lg">Fashion Brand EVOO</div>
+            </div>
+          </div>
+          <div class="p-6 bg-white">
+            <div class="grid grid-cols-3 gap-4 mb-4">
+              <div class="text-center">
+                <div class="text-2xl font-black text-blue-600">8.5x</div>
+                <div class="text-gray-400 text-xs">ROAS</div>
+              </div>
+              <div class="text-center border-x border-gray-100">
+                <div class="text-2xl font-black text-green-500">-40%</div>
+                <div class="text-gray-400 text-xs">CPL</div>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl font-black text-purple-600">3x</div>
+                <div class="text-gray-400 text-xs">Revenue</div>
+              </div>
+            </div>
+            <p class="text-gray-500 text-sm mb-4">Tối ưu Catalogue Ads + Dynamic Retargeting, giảm CPA 40% trong 60 ngày.</p>
+            <a href="#lien-he" class="text-blue-600 font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Xem chi tiết <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+          </div>
+        </div>
+
+        <!-- Case 2 -->
+        <div class="rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl transition-all group" x-show="activeFilter==='all' || activeFilter==='google'">
+          <div class="h-48 bg-gradient-to-br from-orange-500 to-red-600 relative p-6 flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+              <span class="bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full">Google Ads</span>
+              <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center text-white font-black text-lg">R</div>
+            </div>
+            <div>
+              <div class="text-white/70 text-xs mb-1">Bất động sản</div>
+              <div class="text-white font-bold text-lg">Realty Group HCM</div>
+            </div>
+          </div>
+          <div class="p-6 bg-white">
+            <div class="grid grid-cols-3 gap-4 mb-4">
+              <div class="text-center">
+                <div class="text-2xl font-black text-blue-600">250+</div>
+                <div class="text-gray-400 text-xs">Leads/tháng</div>
+              </div>
+              <div class="text-center border-x border-gray-100">
+                <div class="text-2xl font-black text-green-500">-35%</div>
+                <div class="text-gray-400 text-xs">CPC</div>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl font-black text-purple-600">Top 3</div>
+                <div class="text-gray-400 text-xs">Google</div>
+              </div>
+            </div>
+            <p class="text-gray-500 text-sm mb-4">Google Search + Display tối ưu landing page, tỷ lệ chuyển đổi tăng 2.8 lần.</p>
+            <a href="#lien-he" class="text-blue-600 font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Xem chi tiết <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+          </div>
+        </div>
+
+        <!-- Case 3 -->
+        <div class="rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl transition-all group" x-show="activeFilter==='all' || activeFilter==='tiktok'">
+          <div class="h-48 bg-gradient-to-br from-gray-900 to-gray-700 relative p-6 flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+              <span class="bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full">TikTok Ads</span>
+              <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center text-white font-black text-lg">F</div>
+            </div>
+            <div>
+              <div class="text-white/70 text-xs mb-1">F&B / Đồ uống</div>
+              <div class="text-white font-bold text-lg">Foodie Drinks Brand</div>
+            </div>
+          </div>
+          <div class="p-6 bg-white">
+            <div class="grid grid-cols-3 gap-4 mb-4">
+              <div class="text-center">
+                <div class="text-2xl font-black text-blue-600">2M+</div>
+                <div class="text-gray-400 text-xs">Views</div>
+              </div>
+              <div class="text-center border-x border-gray-100">
+                <div class="text-2xl font-black text-green-500">5x</div>
+                <div class="text-gray-400 text-xs">ROAS</div>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl font-black text-purple-600">15K</div>
+                <div class="text-gray-400 text-xs">New followers</div>
+              </div>
+            </div>
+            <p class="text-gray-500 text-sm mb-4">In-Feed Ads + Hashtag Challenge viral, tiếp cận 2 triệu view organic trong 2 tuần.</p>
+            <a href="#lien-he" class="text-blue-600 font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Xem chi tiết <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+          </div>
+        </div>
+
+        <!-- Case 4 -->
+        <div class="rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl transition-all group" x-show="activeFilter==='all' || activeFilter==='seo'">
+          <div class="h-48 bg-gradient-to-br from-green-500 to-teal-600 relative p-6 flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+              <span class="bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full">SEO</span>
+              <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center text-white font-black text-lg">M</div>
+            </div>
+            <div>
+              <div class="text-white/70 text-xs mb-1">Y tế / Sức khỏe</div>
+              <div class="text-white font-bold text-lg">MediCare Clinic</div>
+            </div>
+          </div>
+          <div class="p-6 bg-white">
+            <div class="grid grid-cols-3 gap-4 mb-4">
+              <div class="text-center">
+                <div class="text-2xl font-black text-blue-600">Top 1</div>
+                <div class="text-gray-400 text-xs">Google</div>
+              </div>
+              <div class="text-center border-x border-gray-100">
+                <div class="text-2xl font-black text-green-500">+320%</div>
+                <div class="text-gray-400 text-xs">Traffic</div>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl font-black text-purple-600">6 tháng</div>
+                <div class="text-gray-400 text-xs">Đạt kết quả</div>
+              </div>
+            </div>
+            <p class="text-gray-500 text-sm mb-4">SEO toàn diện cho 50+ từ khóa ngành y tế, traffic tăng 320% sau 6 tháng.</p>
+            <a href="#lien-he" class="text-blue-600 font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Xem chi tiết <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+          </div>
+        </div>
+
+        <!-- Case 5 -->
+        <div class="rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl transition-all group" x-show="activeFilter==='all' || activeFilter==='facebook'">
+          <div class="h-48 bg-gradient-to-br from-purple-600 to-indigo-700 relative p-6 flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+              <span class="bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full">Facebook Ads</span>
+              <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center text-white font-black text-lg">S</div>
+            </div>
+            <div>
+              <div class="text-white/70 text-xs mb-1">Giáo dục</div>
+              <div class="text-white font-bold text-lg">StarEdu Academy</div>
+            </div>
+          </div>
+          <div class="p-6 bg-white">
+            <div class="grid grid-cols-3 gap-4 mb-4">
+              <div class="text-center">
+                <div class="text-2xl font-black text-blue-600">500+</div>
+                <div class="text-gray-400 text-xs">Học viên mới</div>
+              </div>
+              <div class="text-center border-x border-gray-100">
+                <div class="text-2xl font-black text-green-500">25K</div>
+                <div class="text-gray-400 text-xs">CPL</div>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl font-black text-purple-600">4.2x</div>
+                <div class="text-gray-400 text-xs">ROAS</div>
+              </div>
+            </div>
+            <p class="text-gray-500 text-sm mb-4">Lead gen cho trung tâm anh ngữ, CPL chỉ 25K với tỷ lệ chốt đơn 18%.</p>
+            <a href="#lien-he" class="text-blue-600 font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Xem chi tiết <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+          </div>
+        </div>
+
+        <!-- Case 6 -->
+        <div class="rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl transition-all group" x-show="activeFilter==='all' || activeFilter==='google'">
+          <div class="h-48 bg-gradient-to-br from-blue-400 to-cyan-600 relative p-6 flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+              <span class="bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full">Google Ads</span>
+              <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center text-white font-black text-lg">T</div>
+            </div>
+            <div>
+              <div class="text-white/70 text-xs mb-1">Công nghệ / SaaS</div>
+              <div class="text-white font-bold text-lg">TechSol Vietnam</div>
+            </div>
+          </div>
+          <div class="p-6 bg-white">
+            <div class="grid grid-cols-3 gap-4 mb-4">
+              <div class="text-center">
+                <div class="text-2xl font-black text-blue-600">180+</div>
+                <div class="text-gray-400 text-xs">SQL/tháng</div>
+              </div>
+              <div class="text-center border-x border-gray-100">
+                <div class="text-2xl font-black text-green-500">-28%</div>
+                <div class="text-gray-400 text-xs">CAC</div>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl font-black text-purple-600">6.1x</div>
+                <div class="text-gray-400 text-xs">ROI</div>
+              </div>
+            </div>
+            <p class="text-gray-500 text-sm mb-4">B2B lead gen với Google Ads + LinkedIn Ads, giảm CAC 28% và tăng chất lượng lead.</p>
+            <a href="#lien-he" class="text-blue-600 font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Xem chi tiết <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CLIENT LOGOS MARQUEE ===== -->
+  <section class="py-16 bg-gray-50 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+      <p class="text-center text-gray-400 font-medium text-sm uppercase tracking-widest">Khách hàng đã tin tưởng chúng tôi</p>
+    </div>
+    <div class="marquee-wrapper">
+      <div class="marquee-track">
+        <div class="marquee-item">Fashion Brand</div>
+        <div class="marquee-item">Realty Group</div>
+        <div class="marquee-item">MediCare</div>
+        <div class="marquee-item">StarEdu</div>
+        <div class="marquee-item">TechSol</div>
+        <div class="marquee-item">Foodie Co.</div>
+        <div class="marquee-item">HomeDecor</div>
+        <div class="marquee-item">AutoCar VN</div>
+        <div class="marquee-item">Beauty Plus</div>
+        <div class="marquee-item">GreenFarm</div>
+        <!-- Duplicate for seamless loop -->
+        <div class="marquee-item">Fashion Brand</div>
+        <div class="marquee-item">Realty Group</div>
+        <div class="marquee-item">MediCare</div>
+        <div class="marquee-item">StarEdu</div>
+        <div class="marquee-item">TechSol</div>
+        <div class="marquee-item">Foodie Co.</div>
+        <div class="marquee-item">HomeDecor</div>
+        <div class="marquee-item">AutoCar VN</div>
+        <div class="marquee-item">Beauty Plus</div>
+        <div class="marquee-item">GreenFarm</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <div class="inline-flex items-center gap-2 bg-blue-50 text-blue-600 rounded-full px-4 py-2 text-sm font-semibold mb-4">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          Khách hàng nói gì
+        </div>
+        <h2 class="text-3xl lg:text-4xl font-black text-gray-900 mb-3">Đánh giá <span class="text-gradient">từ khách hàng</span></h2>
+        <p class="text-gray-500 max-w-xl mx-auto">Những gì khách hàng nói về kết quả thực tế sau khi làm việc cùng HT Ads Agency.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Testimonial 1 -->
+        <div class="bg-gray-50 rounded-2xl p-7 relative border border-gray-100 hover:border-blue-100 hover:shadow-lg transition-all">
+          <svg class="w-8 h-8 text-blue-200 absolute top-6 right-6" fill="currentColor" viewBox="0 0 32 32"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"/></svg>
+          <div class="flex gap-1 mb-4">
+            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="text-gray-700 text-sm leading-relaxed mb-6">"HT Ads Agency đã giúp chúng tôi tăng doanh thu gấp 3 lần chỉ trong 3 tháng. KPI cam kết rõ ràng, báo cáo minh bạch hàng tuần. Đây là agency tốt nhất tôi từng làm việc!"</p>
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-full btn-gradient flex items-center justify-center text-white font-bold text-sm shrink-0">MT</div>
+            <div>
+              <div class="font-bold text-gray-900 text-sm">Nguyễn Minh Tuấn</div>
+              <div class="text-gray-400 text-xs">CEO · Fashion Brand EVOO</div>
+            </div>
+            <div class="ml-auto text-right">
+              <div class="text-blue-600 text-xs font-bold">Facebook Ads</div>
+              <div class="text-green-500 text-xs font-semibold">ROAS 8.5x ↑</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 - Featured (center, larger) -->
+        <div class="bg-gradient-to-br from-blue-600 to-cyan-500 rounded-2xl p-7 relative shadow-xl shadow-blue-500/20">
+          <svg class="w-8 h-8 text-white/20 absolute top-6 right-6" fill="currentColor" viewBox="0 0 32 32"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"/></svg>
+          <div class="flex gap-1 mb-4">
+            <svg class="w-4 h-4 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="text-white text-sm leading-relaxed mb-6">"Ngân sách Google Ads được tối ưu cực kỳ tốt. Leads tăng 250 leads/tháng, chi phí giảm 35%. Đội ngũ chuyên nghiệp, phản hồi nhanh trong vòng 1 giờ mọi lúc mọi nơi!"</p>
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center text-white font-bold text-sm shrink-0">TH</div>
+            <div>
+              <div class="font-bold text-white text-sm">Trần Thị Hoa</div>
+              <div class="text-white/70 text-xs">Marketing Director · Realty Group HCM</div>
+            </div>
+            <div class="ml-auto text-right">
+              <div class="text-white/80 text-xs font-bold">Google Ads</div>
+              <div class="text-green-300 text-xs font-semibold">-35% CPL ↓</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="bg-gray-50 rounded-2xl p-7 relative border border-gray-100 hover:border-blue-100 hover:shadow-lg transition-all">
+          <svg class="w-8 h-8 text-blue-200 absolute top-6 right-6" fill="currentColor" viewBox="0 0 32 32"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"/></svg>
+          <div class="flex gap-1 mb-4">
+            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="text-gray-700 text-sm leading-relaxed mb-6">"TikTok Ads đã giúp brand viral với 2 triệu view! Không chỉ views mà còn chuyển đổi thực sự — ROAS đạt 5x vượt xa kỳ vọng. Sẽ tiếp tục gắn bó lâu dài."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-full btn-gradient flex items-center justify-center text-white font-bold text-sm shrink-0">QH</div>
+            <div>
+              <div class="font-bold text-gray-900 text-sm">Lê Quốc Hùng</div>
+              <div class="text-gray-400 text-xs">Founder · StarEdu Academy</div>
+            </div>
+            <div class="ml-auto text-right">
+              <div class="text-blue-600 text-xs font-bold">TikTok Ads</div>
+              <div class="text-green-500 text-xs font-semibold">ROAS 5x ↑</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BLOG ===== -->
+  <section id="blog" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-end justify-between mb-10">
+        <div>
+          <div class="inline-flex items-center gap-2 bg-blue-50 text-blue-600 rounded-full px-4 py-2 text-sm font-semibold mb-4">Blog & Insights</div>
+          <h2 class="text-3xl lg:text-4xl font-black text-gray-900">Kiến thức <span class="text-gradient">Marketing</span></h2>
+        </div>
+        <a href="https://www.facebook.com/htmedia.vn" target="_blank" class="hidden sm:flex items-center gap-2 text-blue-600 font-semibold text-sm hover:gap-3 transition-all">Xem tất cả <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Blog 1 — từ Facebook page thực tế -->
+        <article class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all group border-2 border-blue-100">
+          <div class="h-48 bg-gradient-to-br from-blue-600 to-blue-800 flex flex-col items-center justify-center p-6 relative">
+            <div class="absolute top-3 right-3 bg-white/20 rounded-full px-2 py-1 text-xs text-white font-semibold flex items-center gap-1">
+              <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              Bài viết mới nhất
+            </div>
+            <div class="text-center">
+              <div class="text-white font-black text-lg mb-1">CƠ HỘI ĐẶC BIỆT</div>
+              <div class="text-blue-200 text-xs font-semibold">CHO CÁC CHỦ SHOP & DOANH NGHIỆP</div>
+              <div class="mt-3 bg-white/20 rounded-xl px-4 py-2">
+                <div class="text-white font-black text-2xl">7 NGÀY</div>
+                <div class="text-blue-200 text-xs">Thử nghiệm Ads miễn phí</div>
+              </div>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-xs bg-blue-50 text-blue-600 px-2.5 py-1 rounded-full font-medium">Ưu đãi 2026</span>
+              <span class="text-gray-400 text-xs">2 tháng 3, 2026</span>
+            </div>
+            <h3 class="font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">Dịch vụ mới 2026: 7 ngày thử nghiệm Ads miễn phí cho chủ Shop</h3>
+            <p class="text-gray-500 text-sm leading-relaxed mb-4">Cơ hội đặc biệt dành cho các chủ shop & doanh nghiệp vừa và nhỏ. HT Ads Agency sẽ triển khai chiến dịch quảng cáo thực tế trong 1 tuần để bạn thấy kết quả trước khi quyết định.</p>
+            <a href="https://www.facebook.com/htmedia.vn" target="_blank" class="text-blue-600 font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Xem bài viết gốc <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+          </div>
+        </article>
+
+        <!-- Blog 2 -->
+        <article class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all group">
+          <div class="h-48 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center p-6">
+            <div class="text-center">
+              <div class="bg-white/10 rounded-xl p-3 inline-block mb-2">
+                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.17 8.17 0 004.78 1.52V6.77a4.85 4.85 0 01-1.01-.08z"/></svg>
+              </div>
+              <div class="text-white font-bold text-sm">TikTok Ads 2026</div>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-xs bg-gray-100 text-gray-600 px-2.5 py-1 rounded-full font-medium">TikTok Ads</span>
+              <span class="text-gray-400 text-xs">15 tháng 4, 2026</span>
+            </div>
+            <h3 class="font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">Hướng dẫn TikTok Ads từ A-Z cho người mới bắt đầu</h3>
+            <p class="text-gray-500 text-sm leading-relaxed mb-4">TikTok đang là mỏ vàng quảng cáo với CPM rẻ nhất thị trường. Bài viết này hướng dẫn bạn từng bước setup chiến dịch hiệu quả...</p>
+            <a href="https://www.facebook.com/htmedia.vn" target="_blank" class="text-blue-600 font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Đọc tiếp <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+          </div>
+        </article>
+
+        <!-- Blog 3 -->
+        <article class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all group">
+          <div class="h-48 bg-gradient-to-br from-orange-500 to-rose-600 flex items-center justify-center p-6">
+            <div class="text-center">
+              <div class="bg-white/20 rounded-xl p-3 inline-block mb-2">
+                <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+              </div>
+              <div class="text-white font-bold text-sm">Chiến lược 2026</div>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-xs bg-orange-50 text-orange-600 px-2.5 py-1 rounded-full font-medium">Chiến lược</span>
+              <span class="text-gray-400 text-xs">1 tháng 4, 2026</span>
+            </div>
+            <h3 class="font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">Cách đo lường ROI quảng cáo số đúng cách năm 2026</h3>
+            <p class="text-gray-500 text-sm leading-relaxed mb-4">Nhiều doanh nghiệp đang đo ROI sai cách. Bài viết này chỉ ra những sai lầm phổ biến và cách tính ROI chính xác nhất...</p>
+            <a href="https://www.facebook.com/htmedia.vn" target="_blank" class="text-blue-600 font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Đọc tiếp <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA + CONTACT ===== -->
+  <section id="lien-he" class="py-20 cta-bg relative overflow-hidden">
+    <div class="blob blob-cta-1"></div>
+    <div class="blob blob-cta-2"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Left -->
+        <div class="text-white">
+          <h2 class="text-3xl lg:text-5xl font-black mb-4 leading-tight">Sẵn sàng tăng trưởng<br/>cùng <span class="text-cyan-300">HT Agency?</span></h2>
+          <p class="text-white/70 text-lg mb-8 leading-relaxed">Nhận tư vấn miễn phí ngay hôm nay. Chúng tôi sẽ phân tích chiến lược hiện tại và đề xuất giải pháp phù hợp nhất.</p>
+
+          <div class="space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5 text-cyan-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+              </div>
+              <div>
+                <div class="text-white/50 text-xs">Hotline hỗ trợ 24/7</div>
+                <div class="text-white font-bold">098 134 84 13</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5 text-cyan-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              </div>
+              <div>
+                <div class="text-white/50 text-xs">Email</div>
+                <div class="text-white font-bold">info@htmedia.vn</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5 text-cyan-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              </div>
+              <div>
+                <div class="text-white/50 text-xs">Văn phòng</div>
+                <div class="text-white font-bold">Vinhomes Grand Park, TP. Thủ Đức, TP.HCM</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="bg-white rounded-2xl p-8 shadow-2xl">
+          <h3 class="text-xl font-black text-gray-900 mb-6">Đăng ký tư vấn miễn phí</h3>
+          <form class="space-y-4" @submit.prevent="submitForm()">
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1.5">Họ và tên *</label>
+                <input type="text" placeholder="Nguyễn Văn A" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition" />
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1.5">Số điện thoại *</label>
+                <input type="tel" placeholder="098 134 84 13" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-1.5">Email</label>
+              <input type="email" placeholder="email@congty.com" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-1.5">Dịch vụ quan tâm</label>
+              <select class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition bg-white">
+                <option value="">Chọn dịch vụ...</option>
+                <option>Facebook & Instagram Ads</option>
+                <option>Google Ads</option>
+                <option>TikTok Ads</option>
+                <option>SEO & Content</option>
+                <option>Thiết kế sáng tạo</option>
+                <option>Tư vấn chiến lược</option>
+                <option>Gói dịch vụ toàn diện</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-1.5">Ngân sách / tháng</label>
+              <select class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition bg-white">
+                <option value="">Chọn ngân sách...</option>
+                <option>Dưới 20 triệu</option>
+                <option>20 - 50 triệu</option>
+                <option>50 - 100 triệu</option>
+                <option>Trên 100 triệu</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-1.5">Ghi chú thêm</label>
+              <textarea rows="3" placeholder="Mô tả ngắn về doanh nghiệp và mục tiêu marketing của bạn..." class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition resize-none"></textarea>
+            </div>
+            <button type="submit" class="w-full btn-gradient text-white py-4 rounded-xl font-bold text-base shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2">
+              Gửi yêu cầu tư vấn
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </button>
+            <p class="text-gray-400 text-xs text-center">Chúng tôi sẽ liên hệ trong vòng 2 giờ làm việc</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="bg-gray-950 text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+        <!-- Brand -->
+        <div class="lg:col-span-2">
+          <div class="flex items-center gap-3 mb-5">
+            <svg width="40" height="34" viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="logoGradF" x1="0%" y1="100%" x2="100%" y2="0%">
+                  <stop offset="0%" style="stop-color:#2563EB"/>
+                  <stop offset="100%" style="stop-color:#06B6D4"/>
+                </linearGradient>
+              </defs>
+              <path d="M8 15 L8 85 L28 85 L28 60 L52 60 L52 85 L72 85 L72 15 L52 15 L52 42 L28 42 L28 15 Z" fill="url(#logoGradF)"/>
+              <path d="M76 15 L76 85 L96 85 L96 30 L116 30 L116 15 Z" fill="url(#logoGradF)"/>
+              <path d="M90 8 Q106 2 118 10 L116 15 L96 15 Z" fill="#06B6D4" opacity="0.9"/>
+            </svg>
+            <div>
+              <span class="font-black text-lg text-white">HT Ads Agency</span>
+              <div class="text-xs text-cyan-400 font-semibold tracking-widest uppercase">Digital Marketing</div>
+            </div>
+          </div>
+          <p class="text-gray-400 text-sm leading-relaxed mb-6">HT Media — Chuyên cung cấp giải pháp Marketing Online toàn diện giúp doanh nghiệp Việt tăng trưởng bứt phá, đo lường rõ ràng.</p>
+          <!-- Social -->
+          <div class="flex gap-3">
+            <a href="https://www.facebook.com/htmedia.vn" target="_blank" class="w-9 h-9 bg-white/10 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-colors">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@htmedia.vn" target="_blank" class="w-9 h-9 bg-white/10 hover:bg-black rounded-lg flex items-center justify-center transition-colors">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.17 8.17 0 004.78 1.52V6.77a4.85 4.85 0 01-1.01-.08z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@htmedia" target="_blank" class="w-9 h-9 bg-white/10 hover:bg-red-600 rounded-lg flex items-center justify-center transition-colors">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a href="https://m.me/htmedia.vn" target="_blank" class="w-9 h-9 bg-white/10 hover:bg-blue-500 rounded-lg flex items-center justify-center transition-colors">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.614 4.469 8.652V24l4.088-2.242c1.092.3 2.246.464 3.443.464 6.627 0 12-4.974 12-11.111C24 4.974 18.627 0 12 0zm1.191 14.963l-3.055-3.26-5.963 3.26L10.732 8l3.131 3.26L19.752 8l-6.561 6.963z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Dịch vụ -->
+        <div>
+          <h4 class="font-bold text-white mb-4">Dịch vụ</h4>
+          <ul class="space-y-2.5 text-gray-400 text-sm">
+            <li><a href="#" class="hover:text-white transition-colors">Facebook & Instagram Ads</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Google Ads</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">TikTok Ads</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">SEO & Content</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Thiết kế sáng tạo</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Tư vấn chiến lược</a></li>
+          </ul>
+        </div>
+
+        <!-- Công ty -->
+        <div>
+          <h4 class="font-bold text-white mb-4">Công ty</h4>
+          <ul class="space-y-2.5 text-gray-400 text-sm">
+            <li><a href="#ve-chung-toi" class="hover:text-white transition-colors">Về chúng tôi</a></li>
+            <li><a href="#case-study" class="hover:text-white transition-colors">Case Study</a></li>
+            <li><a href="#blog" class="hover:text-white transition-colors">Blog</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Tuyển dụng</a></li>
+            <li><a href="#lien-he" class="hover:text-white transition-colors">Liên hệ</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h4 class="font-bold text-white mb-4">Liên hệ</h4>
+          <ul class="space-y-3 text-gray-400 text-sm">
+            <li class="flex gap-2">
+              <svg class="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              Vinhomes Grand Park, TP. Thủ Đức, TP.HCM
+            </li>
+            <li class="flex gap-2">
+              <svg class="w-4 h-4 text-cyan-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+              098 134 84 13
+            </li>
+            <li class="flex gap-2">
+              <svg class="w-4 h-4 text-cyan-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              info@htmedia.vn
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <p class="text-gray-500 text-sm">© 2024 HT Ads Agency. All rights reserved.</p>
+        <div class="flex gap-6 text-gray-500 text-sm">
+          <a href="#" class="hover:text-white transition-colors">Chính sách bảo mật</a>
+          <a href="#" class="hover:text-white transition-colors">Điều khoản sử dụng</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== FLOATING ZALO ===== -->
+  <a href="https://zalo.me/0981348413" target="_blank" class="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-blue-500 text-white px-4 py-3 rounded-full shadow-xl hover:bg-blue-600 transition-all hover:-translate-y-1 group">
+    <svg width="22" height="22" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="48" height="48" rx="24" fill="white" fill-opacity="0.2"/>
+      <text x="24" y="30" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="13" fill="white">Zalo</text>
+    </svg>
+    <span class="text-sm font-bold hidden sm:block">Chat Zalo</span>
+  </a>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
